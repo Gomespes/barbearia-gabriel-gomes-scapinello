@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Corte de Barba</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <br>
+  <div class="container">
+    <h3 class="container">Corte de Barba</h3>
+    <div class="row">
+      <div class="col-lg-3" style="background-color: aqua;">
+        <img src="images/cabelo/barba1.jpg" alt="Corte de Barba">
+      </div>
+      <div class="col-lg-3" style="background-color: aqua;">
+        <img src="images/cabelo/barba2.jpg" alt="Corte de Barba 2">
+      </div>
+      <div class="col-lg-6" style="background-color: aqua; color: black;">
+        <p>Num serviço completo para valorizar ainda mais seu visual. Realizamos o desenho da barba com precisão,
+          respeitando o estilo pessoal de cada cliente, e incluímos o design de sobrancelhas para um toque final
+          harmônico. Ideal para quem deseja manter a barba alinhada, o rosto definido e a aparência sempre em dia. Tudo
+          feito com navalhas descartáveis e produtos de alta qualidade. Valor do
+          corte separado: R$25,00. Dentro do pacote a negociar via Whatsapp.</p>
+        <p>Whatsapp (49) 98404-6095</p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="div-video col-lg-6">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Xxs_Ax7jWQY?si=DvpTQA-Itwk-5eWC"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="col-lg-6">
+                <form action="javascript:inserirOrcamento();" method="post">
+                    <div class="form-group">
+                        <label for="">Nome</label>
+                        <input type="text" id="nomeCliente" name="nomeCliente" placeholder="Digite seu nome aqui"
+                            class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Serviço</label>
+                        <input type="text" id="nomeServico" class="form-control" placeholder="Ex: Corte de Cabelo"
+                            name="nomeServico">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Valor a ser negociado</label>
+                        <input type="text" id="valor" name="valor" class="form-control" placeholder="Ex: 25.16">
+                    </div>
+
+                    <div class="form-group">
+                        <br>
+                        <button type="submit" class="btn btn-success">Agendar</button>
+                        <a href="index.html" class="btn btn-danger">Voltar</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        async function inserirOrcamento() {
+            let nome = document.getElementById('nomeCliente').value.trim();
+            let servico = document.getElementById('nomeServico').value.trim();
+            let valor = document.getElementById('valor').value.trim();
+
+            if (nome == "" || servico == "" || valor == "") {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            let url = `./back-php/inserir-orcamento.php?nomeCliente=${nome}&nomeServico=${servico}&valor=${valor}`;
+            await fetch(url);
+
+            document.getElementById('nomeCliente').value = "";
+            document.getElementById('nomeServico').value = "";
+            document.getElementById('valor').value = "";
+        }
+    </script>
+
+</body>
+
+</html>

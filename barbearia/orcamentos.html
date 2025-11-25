@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela Orçamentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h3>Lista Orçamentos</h3>
+       <div class="mt-lg-6">
+        <table class="table">
+            <thead>
+              <tr class="table">
+                <th>Nome do Cliente</th>
+                <th width="600">Serviço</th>
+                <th width="90">Valor (R$)</th>
+              </tr>
+            </thead>
+            <tbody id="tabela">
+            </tbody>
+        </table>
+    
+
+        <a href="index.html" class="btn btn-info">Voltar</a>
+    </div>
+
+    <script>
+      async function listar(){
+        let url = `./back-php/listar-orcamento.php`;
+        let resposta = await fetch(url);
+        let dados = await resposta.json();
+        console.log(dados);
+
+        let conteudo = '';
+        let tagPai = document.getElementById('tabela');
+
+        for(let item of dados){
+          conteudo += `
+            <tr>
+              <td>${item.nomeCliente}</td>
+              <td>${item.nomeServico}</td>
+              <td>${item.valor}</td>
+            </tr>`;
+        }
+        tagPai.innerHTML = conteudo;
+      }
+
+      listar();
+    </script>
+
+</body>
+
+</html>
